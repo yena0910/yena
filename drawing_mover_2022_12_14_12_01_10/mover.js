@@ -14,9 +14,9 @@ class Mover {
     
     update() {
       
-      this.t = this.t + 0.1;
-      let speedx = 5 * (noise(this.t) - 0.4);
-      let speedy = 5 * (noise(-this.t + 10) - 0.4);
+      this.t = this.t + 0.01;
+      let speedx = 5 * (noise(this.t) - 0.5);
+      let speedy = 5 * (noise(-this.t - 10) - 0.5);
 
       this.vel = createVector(speedx, speedy * -1);
       this.vel.add(this.acc);

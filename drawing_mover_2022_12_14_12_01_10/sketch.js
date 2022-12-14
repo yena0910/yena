@@ -1,38 +1,42 @@
-let movers = [];
+
 let canvas2;
+let ball;
+
 
 function setup() {
   createCanvas(300, 300);
   canvas2 = createGraphics(300, 300);
-  
-
-  for (let i=0; i<3; i++) {
-    let m = new Mover(random(50)+150, random(20)+200, random(4, 9));
-    movers.push(m);
-  }
-  
+  ball = new Mover(width/2, height/2, 5);
 }
+
+
+
+
+
+
+
+
 
 function draw() {
   background(220);
   image(canvas2, 0, 0);
   let mousePos = createVector(mouseX, mouseY);
+
   
-  for (let i=0; i<movers.length; i++) {
-    let m = movers[i];
-    m.update();
-    m.show();
-    m.show2(canvas2);
     
-    if (mouseIsPressed) {
-      let f = p5.Vector.sub(mousePos, m.pos);
-      // let f = p5.Vector.sub(m.pos, mousePos);
-      f.mult(0.01);
-      m.applyForce(f);
-    }
+   ball.update();
+   ball.show();
+   ball.show2(canvas2);
+    
   }
 
-}
+
+
+
+
+
+
+
 
 
 
@@ -40,7 +44,7 @@ function draw() {
 class Mover {
   constructor(x, y, m) {
     this.pos = createVector(x, y);
-    this.vel = createVector();
+    this.vel = createVector(random(-5, 5), random(-5, 5));
     this.acc = createVector();
     this.m = m; 
   }
@@ -51,6 +55,7 @@ class Mover {
   }
   
   update() {
+    this.vel = createVector(random(-1, 1), random(-1, 1));
     this.vel.add(this.acc);
     this.pos.add(this.vel);
     this.acc.set(0, 0);
@@ -63,7 +68,7 @@ class Mover {
   
   show2(aCanvas) {
     aCanvas.noStroke();
-    aCanvas.fill(250, 100, 0, 100);
-    aCanvas.circle(this.pos.x, this.pos.y, this.vel.mag()*5);
+    aCanvas.fill(155);
+    aCanvas.circle(this.pos.x, this.pos.y, this.m);
   }
 }

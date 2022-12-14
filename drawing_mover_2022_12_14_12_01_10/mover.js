@@ -5,6 +5,8 @@ class Mover {
       this.acc = createVector();
       this.m = m; 
       this.t = 0;
+      this.wallx = 1;
+      this.wally = 1;
     }
     
     applyForce(aForce) {
@@ -15,25 +17,36 @@ class Mover {
     update() {
       
       this.t = this.t + 0.01;
-      let speedx = 5 * (noise(this.t) - 0.5);
-      let speedy = 5 * (noise(-this.t - 10) - 0.5);
+      let speedx = 20 * (noise(this.t) - 0.5) * this.wallx;
+      let speedy = 20 * (noise(-this.t - 10) - 0.5) * this.wally;
 
       this.vel = createVector(speedx, speedy * -1);
       this.vel.add(this.acc);
       this.pos.add(this.vel);
       this.acc.set(0, 0);
-
-
-      
-
-    //   if(speed>0.2) {
-    //     speed = speed * -1 ;
-    //   }
-
-    //   if(speed>-0.2 && speed<0) {
-    //     speed = speed * -1 ;
-    //   }
     }
+
+    edge() {
+        if(this.pos.y - this.m/2 < 0) {
+            this.wally = this.wally * -1;
+            this.pos.y = 0 + this.m/2;
+        }
+        if(this.pos.x - this.m/2 < 0) {
+            this.wallx = this.wallx * -1;
+            this.pos.x = 0 + this.m/2;
+        }
+        if(this.pos.y + this.m/2 > height) {
+            this.wally = this.wally * -1;
+            this.pos.y = height - this.m/2;
+        }
+        if(this.pos.x + this.m/2 > width) {
+            this.wallx = this.wallx * -1;
+            this.pos.x = width - this.m/2;
+        }
+
+    }
+
+
 
     
     show() {

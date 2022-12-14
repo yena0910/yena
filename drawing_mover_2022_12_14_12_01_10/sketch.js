@@ -25,7 +25,7 @@ function draw() {
    ball.update();
    ball.show();
    ball.show2(canvas2);
-    
+   ball.edge();
   }
 
 

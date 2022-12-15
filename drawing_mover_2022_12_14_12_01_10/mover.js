@@ -20,7 +20,7 @@ class Mover {
       let speedx = 20 * (noise(this.t) - 0.5) * this.wallx;
       let speedy = 20 * (noise(-this.t - 10) - 0.5) * this.wally;
 
-      this.vel = createVector(speedx, speedy * -1);
+      this.vel = createVector(speedx, speedy);
       this.vel.add(this.acc);
       this.pos.add(this.vel);
       this.acc.set(0, 0);

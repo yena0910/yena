@@ -7,6 +7,7 @@ class Mover {
       this.t = 0;
       this.wallx = 1;
       this.wally = 1;
+      this.path = []
     }
     
     applyForce(aForce) {
@@ -18,12 +19,17 @@ class Mover {
       
       this.t = this.t + 0.01;
       let speedx = 20 * (noise(this.t) - 0.5) * this.wallx;
-      let speedy = 20 * (noise(-this.t - 10) - 0.5) * this.wally;
+      let speedy = 20 * (noise(this.t - 10) - 0.5) * this.wally;
 
       this.vel = createVector(speedx, speedy);
       this.vel.add(this.acc);
       this.pos.add(this.vel);
       this.acc.set(0, 0);
+
+      this.path.push(this.pos);
+      if (this.path.length > 100) {
+        this.path.splice(0, 1);
+      }
     }
 
     edge() {
@@ -55,6 +61,8 @@ class Mover {
     }
     
     show2(aCanvas) {
+      
+
       aCanvas.noStroke();
       aCanvas.fill(155);
       aCanvas.circle(this.pos.x, this.pos.y, this.m);

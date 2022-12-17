@@ -7,7 +7,7 @@ class Mover {
       this.t = 0;
       this.wallx = 1;
       this.wally = 1;
-      this.path = []
+      this.path = [];
     }
     
     applyForce(aForce) {
@@ -25,12 +25,14 @@ class Mover {
       this.vel.add(this.acc);
       this.pos.add(this.vel);
       this.acc.set(0, 0);
-
-      this.path.push(this.pos);
+      
+      this.path.push(this.pos.copy());
       if (this.path.length > 100) {
         this.path.splice(0, 1);
       }
     }
+
+
 
     edge() {
         if(this.pos.y - this.m/2 < 0) {
@@ -58,14 +60,17 @@ class Mover {
     show() {
       fill(0);
       circle(this.pos.x, this.pos.y, this.m);
+
+      for (let i = 0; i < this.path.length - 1; i++)  {
+        circle(this.path[i].x, this.path[i].y, (i * 0.2));     
+       } 
+
     }
     
-    show2(aCanvas) {
-      
-
-      aCanvas.noStroke();
-      aCanvas.fill(155);
-      aCanvas.circle(this.pos.x, this.pos.y, this.m);
-    }
+   // show2(aCanvas) {
+   //   aCanvas.noStroke();
+   //   aCanvas.fill(155);
+   //   aCanvas.circle(this.pos.x, this.pos.y, this.m);
+   // }
   }
   

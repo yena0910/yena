@@ -8,6 +8,7 @@ class Mover {
       this.wallx = 1;
       this.wally = 1;
       this.path = [];
+      this.length = 150;
     }
     
     applyForce(aForce) {
@@ -27,7 +28,7 @@ class Mover {
       this.acc.set(0, 0);
       
       this.path.push(this.pos.copy());
-      if (this.path.length > 100) {
+      if (this.path.length > this.length) {
         this.path.splice(0, 1);
       }
     }
@@ -60,12 +61,14 @@ class Mover {
     show() {
       fill(0);
       circle(this.pos.x, this.pos.y, this.m);
+     
 
-      for (let i = 0; i < this.path.length - 1; i++)  {
-        circle(this.path[i].x, this.path[i].y, (i * 0.2));     
+      for (let i = 0; i < this.path.length; i++)  { 
+          circle(this.path[i].x, this.path[i].y, this.m); 
+        }         
        } 
 
-    }
+    
     
    // show2(aCanvas) {
    //   aCanvas.noStroke();

@@ -63,11 +63,17 @@ class Mover {
       circle(this.pos.x, this.pos.y, this.m);
      
 
-      for (let i = 0; i < this.path.length; i++)  { 
-          circle(this.path[i].x, this.path[i].y, this.m); 
+      for (let i = 0; i < this.path.length - 2; i++)  { 
+          line(this.path[i].x, this.path[i].y, this.path[i + 1].x, this.path[i + 1].y);
+         // circle(this.path[i].x, this.path[i].y, this.m); 
         }         
        } 
 
+
+
+  seed() {
+     
+     }
     
     
    // show2(aCanvas) {

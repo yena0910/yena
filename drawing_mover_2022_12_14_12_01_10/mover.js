@@ -11,10 +11,6 @@ class Mover {
     this.length = 150;
     this.point = [];
     this.seed = [];
-    // this.ell = 1;
-    // this.vel2 = 0.02; 
-    // this.acc2 = 0.02;
-    // this.core = createVector(-0.02,-0.02);
     let branch;
 
     
@@ -34,9 +30,6 @@ class Mover {
     this.vel.add(this.acc);
     this.pos.add(this.vel);
     this.acc.set(0, 0);
-
-    // this.ell += this.vel2;
-    // this.vel2 += this.acc2;
 
     this.path.push(this.pos.copy());
     if (this.path.length > this.length) {
@@ -84,32 +77,20 @@ class Mover {
  
  
  branch() {
-  
-  //  let v = p5.Vector.random2D();
-  //  v.mult(50);
-  //  for(let i = 0; i < 100; i++) {
-  //   push();
-  //    if (this.seed.length > (5 * i) + 10 ) { 
-  //      this.seed[5 * i].add(this.core);
-  //      translate(this.seed[5 * i].x + v.x, this.seed[5 * i].y + v.y);
-  //      rotate(10);
-  //      ellipse(-v.x, -v.y, 10);
-  //    }
-  //   pop();
-  // }
-  
-
-
-
-
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 100; i++) {
     if (this.seed.length > (10 * i) + 1 ) {
       this.point.push(new Branch(this.seed[10 * i].x, this.seed[10 * i].y));
-      this.point[i].addForce();
-      this.point[i].update();
-      this.point[i].display();
      }
    }
+   for (let point of this.point) {
+    point.addForce();
+    point.update();
+    point.display();
+  }
+  if (this.point.length > this.length) {
+    this.point.splice(0, 50);
 
+  }
  }
 }
+

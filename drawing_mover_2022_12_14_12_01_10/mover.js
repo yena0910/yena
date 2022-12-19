@@ -10,6 +10,10 @@ class Mover {
     this.path = [];
     this.length = 150;
     this.seed = [];
+    this.ell = 1;
+    // this.vel2 = 0.02; 
+    // this.acc2 = 0.02;
+    this.core = createVector(-0.02,-0.02);
   }
 
   applyForce(aForce) {
@@ -22,15 +26,13 @@ class Mover {
     let speedx = 20 * (noise(this.t) - 0.5) * this.wallx;
     let speedy = 20 * (noise(this.t - 10) - 0.5) * this.wally;
 
-    let speed2x = 5 * (noise(this.t + 700) - 0.5) * this.wallx;
-    let speed2y = 5 * (noise(this.t - 100) - 0.5) * this.wally;
-
     this.vel = createVector(speedx, speedy);
-    this.vel2 = createVector(speed2x, speed2y);
     this.vel.add(this.acc);
-    this.vel2.add(this.acc);
     this.pos.add(this.vel);
     this.acc.set(0, 0);
+
+    // this.ell += this.vel2;
+    // this.vel2 += this.acc2;
 
     this.path.push(this.pos.copy());
     if (this.path.length > this.length) {
@@ -38,9 +40,9 @@ class Mover {
     }
 
     this.seed.push(this.pos.copy());
-    //  if (this.seed.length > this.length) {
-    //    this.seed.splice(0, 1);
-    //  }
+      if (this.seed.length > this.length) {
+        this.seed.splice(0, 1);
+      }
   }
 
   edge() {
@@ -74,11 +76,29 @@ class Mover {
         this.path[i + 1].y
       );
     }
+  }
+ 
+ 
+ branch() {
+  
+  //  let v = p5.Vector.random2D();
+  //  v.mult(50);
+  //  for(let i = 0; i < 100; i++) {
+  //   push();
+  //    if (this.seed.length > (5 * i) + 10 ) {
+  //      this.seed[5 * i].add(this.core);
+  //      translate(this.seed[5 * i].x + v.x, this.seed[5 * i].y + v.y);
+  //      rotate(10);
+  //      ellipse(-v.x, -v.y, 10);
+  //    }
+  //   pop();
+  // }
+   
 
-    if (this.seed.length > 15) { 
-      this.seed[10].add(this.vel2);
-      circle(this.seed[10].x, this.seed[10].y, 3);
-      }
+  for (let i = 0; i < 1000; i++) {
+   if (this.seed.length > (10 * i) + 10 ) {
+     circle(this.seed[10 * i].x + random(5, 7), this.seed[10 * i].y + random(5, 7), 3);
     }
   }
-
+ }
+}

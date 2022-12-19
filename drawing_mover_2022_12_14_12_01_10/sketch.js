@@ -15,6 +15,7 @@ function draw() {
   ball.update();
   ball.show();
   ball.edge();
+  ball.branch();
 
 }
 

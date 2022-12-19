@@ -9,11 +9,15 @@ class Mover {
     this.wally = 1;
     this.path = [];
     this.length = 150;
+    this.point = [];
     this.seed = [];
-    this.ell = 1;
+    // this.ell = 1;
     // this.vel2 = 0.02; 
     // this.acc2 = 0.02;
-    this.core = createVector(-0.02,-0.02);
+    // this.core = createVector(-0.02,-0.02);
+    let branch;
+
+    
   }
 
   applyForce(aForce) {
@@ -85,7 +89,7 @@ class Mover {
   //  v.mult(50);
   //  for(let i = 0; i < 100; i++) {
   //   push();
-  //    if (this.seed.length > (5 * i) + 10 ) {
+  //    if (this.seed.length > (5 * i) + 10 ) { 
   //      this.seed[5 * i].add(this.core);
   //      translate(this.seed[5 * i].x + v.x, this.seed[5 * i].y + v.y);
   //      rotate(10);
@@ -93,12 +97,19 @@ class Mover {
   //    }
   //   pop();
   // }
-   
+  
+
+
+
 
   for (let i = 0; i < 1000; i++) {
-   if (this.seed.length > (10 * i) + 10 ) {
-     circle(this.seed[10 * i].x + random(5, 7), this.seed[10 * i].y + random(5, 7), 3);
-    }
-  }
+    if (this.seed.length > (10 * i) + 1 ) {
+      this.point.push(new Branch(this.seed[10 * i].x, this.seed[10 * i].y));
+      this.point[i].addForce();
+      this.point[i].update();
+      this.point[i].display();
+     }
+   }
+
  }
 }

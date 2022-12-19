@@ -1,5 +1,5 @@
-let canvas2;
 let ball;
+
 
 function setup() {
   createCanvas(800, 800);
@@ -9,8 +9,6 @@ function setup() {
 
 function draw() {
   background(220);
-  image(canvas2, 0, 0);
-  let mousePos = createVector(mouseX, mouseY);
 
   ball.update();
   ball.show();

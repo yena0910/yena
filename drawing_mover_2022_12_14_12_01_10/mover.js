@@ -9,7 +9,7 @@ class Mover {
     this.wally = 1;
     this.path = [];
     this.length = 150;
-    // this.seed = [];
+    this.seed = [];
   }
 
   applyForce(aForce) {
@@ -37,9 +37,9 @@ class Mover {
       this.path.splice(0, 1);
     }
 
-    // this.seed.push(this.pos.copy());
-    //  if (this.seed.length > 150) {
-    //    this.seed.splice(0, 30);
+    this.seed.push(this.pos.copy());
+    //  if (this.seed.length > this.length) {
+    //    this.seed.splice(0, 1);
     //  }
   }
 
@@ -75,10 +75,9 @@ class Mover {
       );
     }
 
-
-    if (this.path.length > 15) {
-      this.path[10].add(this.vel2);
-      circle(this.path[10].x, this.path[10].y, 1);
+    if (this.seed.length > 15) { 
+      this.seed[10].add(this.vel2);
+      circle(this.seed[10].x, this.seed[10].y, 3);
       }
     }
   }

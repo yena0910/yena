@@ -9,8 +9,7 @@ class Mover {
     this.wally = 1;
     this.path = [];
     this.length = 150;
-    this.theta;
-    this.seed = [];
+    // this.seed = [];
   }
 
   applyForce(aForce) {
@@ -23,8 +22,13 @@ class Mover {
     let speedx = 20 * (noise(this.t) - 0.5) * this.wallx;
     let speedy = 20 * (noise(this.t - 10) - 0.5) * this.wally;
 
+    let speed2x = 5 * (noise(this.t + 700) - 0.5) * this.wallx;
+    let speed2y = 5 * (noise(this.t - 100) - 0.5) * this.wally;
+
     this.vel = createVector(speedx, speedy);
+    this.vel2 = createVector(speed2x, speed2y);
     this.vel.add(this.acc);
+    this.vel2.add(this.acc);
     this.pos.add(this.vel);
     this.acc.set(0, 0);
 
@@ -33,10 +37,10 @@ class Mover {
       this.path.splice(0, 1);
     }
 
-    this.seed.push(this.pos.copy());
-    if (this.seed.length > 30) {
-      this.seed.splice(0, 30);
-    }
+    // this.seed.push(this.pos.copy());
+    //  if (this.seed.length > 150) {
+    //    this.seed.splice(0, 30);
+    //  }
   }
 
   edge() {
@@ -70,26 +74,12 @@ class Mover {
         this.path[i + 1].y
       );
     }
-    
-    
-        this.h = 20;
 
-    if (this.seed.length > 20) {
-      push();
-      translate(this.seed[15].x, this.seed[15].y);
-      line(0, 0, 40, 40);
-      translate(40, 40);
 
-      this.h *= 0.66;
-
-      if (this.h > 0.3) {
-        rotate(radians(30));
-        line(0, 0, 0, -this.h);
-        translate(0, -this.h);
-
-        pop();
+    if (this.path.length > 15) {
+      this.path[10].add(this.vel2);
+      circle(this.path[10].x, this.path[10].y, 1);
       }
     }
   }
 
- }

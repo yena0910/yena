@@ -8,7 +8,7 @@ class Mover {
     this.wallx = 1;
     this.wally = 1;
     this.path = [];
-    this.length = 150;
+    this.length = 50;
     this.point = [];
     this.seed = [];
     let branch;
@@ -62,10 +62,13 @@ class Mover {
   }
 
   show() {
-    fill(0);
+    stroke(255);
+    fill(255);
     circle(this.pos.x, this.pos.y, this.m);
 
     for (let i = 0; i < this.path.length - 2; i++) {
+      stroke(255);
+      fill(255);
       line(
         this.path[i].x,
         this.path[i].y,
@@ -77,7 +80,7 @@ class Mover {
  
  
  branch() {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 5; i++) {
     if (this.seed.length > (10 * i) + 1 ) {
       this.point.push(new Branch(this.seed[10 * i].x, this.seed[10 * i].y));
      }
@@ -88,7 +91,7 @@ class Mover {
     point.display();
   }
   if (this.point.length > this.length) {
-    this.point.splice(0, 50);
+    this.point.splice(0, 5);
 
   }
  }

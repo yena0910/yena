@@ -4,7 +4,7 @@ class Mover {
     //  this.vel = createVector();
     this.acc = createVector();
     this.m = m;
-    this.t = random(-100, 100);
+    this.t = random(-1000, 1000);
     this.wallx = 1;
     this.wally = 1;
     this.path = [];

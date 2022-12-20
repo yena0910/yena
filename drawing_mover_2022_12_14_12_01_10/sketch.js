@@ -1,20 +1,23 @@
 let ball;
-
+let particle = [];
 
 function setup() {
   createCanvas(800, 800);
-  canvas2 = createGraphics(800, 800);
-  ball = new Mover(width / 2, height / 2, 3);
-  
+  for(let i = 0; i > 5; i++) {
+  particle.push(new Mover(random(0, width),random(0, height), 3))
+  }
 }
 
 function draw() {
   background(0);
 
-  ball.update();
-  ball.show();
-  ball.edge();
-  ball.branch();
+  for (let ball of particle) {
+    ball.update();
+    ball.show();
+    ball.edge();
+    ball.branch();
+  }
+
 
 }
 
